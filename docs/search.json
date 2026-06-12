@@ -1,0 +1,121 @@
+[
+  {
+    "objectID": "topics/style-rotation.html",
+    "href": "topics/style-rotation.html",
+    "title": "风格轮动",
+    "section": "",
+    "text": "风格轮动论文笔记\n暂无论文。"
+  },
+  {
+    "objectID": "topics/asset-allocation.html",
+    "href": "topics/asset-allocation.html",
+    "title": "资产配置",
+    "section": "",
+    "text": "资产配置论文笔记\n暂无论文。"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "量化论文知识库",
+    "section": "",
+    "text": "统计： 1 篇论文（持续更新中）\n\n最新阅读按主题\n\n\n\n\n\n示例笔记 · 2024-06\n\n\n多因子模型选股\n\n\n示例论文，展示了 Quarto 对 LaTeX 公式、Python 可执行代码、数据表格和图表的综合支持。\n\n\n\n\n\n\n\n主题\n描述\n论文数\n\n\n\n\n多因子模型\n因子构造、IC分析、组合优化\n1\n\n\n深度强化学习\nTD3、PPO、Turbulence Index\n0\n\n\n资产配置\n风险预算、Black-Litterman\n0\n\n\n风格轮动\n产业资本择时、风格因子\n0\n\n\n\n\n\n\n\n\n\nPDF论文 → AI 阅读总结 → 生成 .qmd 文件 → Push → GitHub Actions → 上线 ✅\n                                              (自动构建+部署)\n使用 Hermes Agent 配合 AI 批量处理论文： 1. 将 PDF 放入 papers/ 目录 2. 运行 AI 脚本生成 .qmd 格式总结 3. git push → 自动部署到 bozarnr.github.io/paper-library"
+  },
+  {
+    "objectID": "index.html#工作流从-pdf-到网页",
+    "href": "index.html#工作流从-pdf-到网页",
+    "title": "量化论文知识库",
+    "section": "",
+    "text": "PDF论文 → AI 阅读总结 → 生成 .qmd 文件 → Push → GitHub Actions → 上线 ✅\n                                              (自动构建+部署)\n使用 Hermes Agent 配合 AI 批量处理论文： 1. 将 PDF 放入 papers/ 目录 2. 运行 AI 脚本生成 .qmd 格式总结 3. git push → 自动部署到 bozarnr.github.io/paper-library"
+  },
+  {
+    "objectID": "papers/sample-multi-factor.html",
+    "href": "papers/sample-multi-factor.html",
+    "title": "多因子选股模型的因子构造与失效分析",
+    "section": "",
+    "text": "本笔记记录多因子选股模型中常见因子的构造方法、盈利逻辑及失效条件，涵盖估值因子、动量因子和反转因子。"
+  },
+  {
+    "objectID": "papers/sample-multi-factor.html#摘要",
+    "href": "papers/sample-multi-factor.html#摘要",
+    "title": "多因子选股模型的因子构造与失效分析",
+    "section": "",
+    "text": "本笔记记录多因子选股模型中常见因子的构造方法、盈利逻辑及失效条件，涵盖估值因子、动量因子和反转因子。"
+  },
+  {
+    "objectID": "papers/sample-multi-factor.html#因子构造",
+    "href": "papers/sample-multi-factor.html#因子构造",
+    "title": "多因子选股模型的因子构造与失效分析",
+    "section": "因子构造",
+    "text": "因子构造\n\n估值因子（EP）\n\\[ EP_t = \\frac{Earnings_t}{MarketCap_t} \\]\n\n\n动量因子\n\\[ Mom_{12,1} = \\frac{P_{t-1}}{P_{t-12}} - 1 \\]\n\n\n因子合成\n加权方式采用等权合成与ICIR加权两种方式：\n\\[ Score_i = \\sum_{k=1}^K w_k \\cdot Rank(F_{k,i}) \\]\n其中 \\(w_k\\) 为因子权重，\\(Rank(\\cdot)\\) 为横截面排序分位数。"
+  },
+  {
+    "objectID": "papers/sample-multi-factor.html#因子测试代码",
+    "href": "papers/sample-multi-factor.html#因子测试代码",
+    "title": "多因子选股模型的因子构造与失效分析",
+    "section": "因子测试代码",
+    "text": "因子测试代码\n\nimport numpy as np\nimport pandas as pd\nimport matplotlib.pyplot as plt\n\n# 模拟因子数据\nnp.random.seed(42)\nn_stocks = 1000\nn_periods = 252\n\ndates = pd.date_range('2023-01-01', periods=n_periods, freq='D')\nfactor = np.random.randn(n_stocks)\nreturns = 0.05 * factor + np.random.randn(n_stocks) * 0.02\n\n# IC 计算\nic = np.corrcoef(factor, returns)[0, 1]\nprint(f\"Rank IC: {ic:.4f}\")\n\n# 分组收益\ngroups = pd.qcut(factor, 5, labels=['Q1(低)', 'Q2', 'Q3', 'Q4', 'Q5(高)'])\ngroup_returns = pd.Series(returns, index=groups).groupby(level=0).mean()\n\nfig, ax = plt.subplots(figsize=(8, 4))\ncolors = ['#c96442', '#e8927a', '#f0c4a0', '#a8c4d8', '#5a8a9a']\nbars = ax.bar(group_returns.index, group_returns.values, color=colors)\nax.set_title('多空组合收益（示例）')\nax.set_ylabel('日均收益 (%)')\nax.axhline(0, color='gray', linestyle='--', linewidth=0.5)\nplt.tight_layout()\nplt.show()\n\nRank IC: 0.9240\n\n\n/tmp/ipykernel_25429/3113493769.py:28: UserWarning: Glyph 20302 (\\N{CJK UNIFIED IDEOGRAPH-4F4E}) missing from font(s) DejaVu Sans.\n  plt.tight_layout()\n/tmp/ipykernel_25429/3113493769.py:28: UserWarning: Glyph 39640 (\\N{CJK UNIFIED IDEOGRAPH-9AD8}) missing from font(s) DejaVu Sans.\n  plt.tight_layout()\n/tmp/ipykernel_25429/3113493769.py:28: UserWarning: Glyph 26085 (\\N{CJK UNIFIED IDEOGRAPH-65E5}) missing from font(s) DejaVu Sans.\n  plt.tight_layout()\n/tmp/ipykernel_25429/3113493769.py:28: UserWarning: Glyph 22343 (\\N{CJK UNIFIED IDEOGRAPH-5747}) missing from font(s) DejaVu Sans.\n  plt.tight_layout()\n/tmp/ipykernel_25429/3113493769.py:28: UserWarning: Glyph 25910 (\\N{CJK UNIFIED IDEOGRAPH-6536}) missing from font(s) DejaVu Sans.\n  plt.tight_layout()\n/tmp/ipykernel_25429/3113493769.py:28: UserWarning: Glyph 30410 (\\N{CJK UNIFIED IDEOGRAPH-76CA}) missing from font(s) DejaVu Sans.\n  plt.tight_layout()\n/tmp/ipykernel_25429/3113493769.py:28: UserWarning: Glyph 22810 (\\N{CJK UNIFIED IDEOGRAPH-591A}) missing from font(s) DejaVu Sans.\n  plt.tight_layout()\n/tmp/ipykernel_25429/3113493769.py:28: UserWarning: Glyph 31354 (\\N{CJK UNIFIED IDEOGRAPH-7A7A}) missing from font(s) DejaVu Sans.\n  plt.tight_layout()\n/tmp/ipykernel_25429/3113493769.py:28: UserWarning: Glyph 32452 (\\N{CJK UNIFIED IDEOGRAPH-7EC4}) missing from font(s) DejaVu Sans.\n  plt.tight_layout()\n/tmp/ipykernel_25429/3113493769.py:28: UserWarning: Glyph 21512 (\\N{CJK UNIFIED IDEOGRAPH-5408}) missing from font(s) DejaVu Sans.\n  plt.tight_layout()\n/tmp/ipykernel_25429/3113493769.py:28: UserWarning: Glyph 65288 (\\N{FULLWIDTH LEFT PARENTHESIS}) missing from font(s) DejaVu Sans.\n  plt.tight_layout()\n/tmp/ipykernel_25429/3113493769.py:28: UserWarning: Glyph 31034 (\\N{CJK UNIFIED IDEOGRAPH-793A}) missing from font(s) DejaVu Sans.\n  plt.tight_layout()\n/tmp/ipykernel_25429/3113493769.py:28: UserWarning: Glyph 20363 (\\N{CJK UNIFIED IDEOGRAPH-4F8B}) missing from font(s) DejaVu Sans.\n  plt.tight_layout()\n/tmp/ipykernel_25429/3113493769.py:28: UserWarning: Glyph 65289 (\\N{FULLWIDTH RIGHT PARENTHESIS}) missing from font(s) DejaVu Sans.\n  plt.tight_layout()\n/home/rog/.local/lib/python3.12/site-packages/IPython/core/pylabtools.py:170: UserWarning: Glyph 26085 (\\N{CJK UNIFIED IDEOGRAPH-65E5}) missing from font(s) DejaVu Sans.\n  fig.canvas.print_figure(bytes_io, **kw)\n/home/rog/.local/lib/python3.12/site-packages/IPython/core/pylabtools.py:170: UserWarning: Glyph 22343 (\\N{CJK UNIFIED IDEOGRAPH-5747}) missing from font(s) DejaVu Sans.\n  fig.canvas.print_figure(bytes_io, **kw)\n/home/rog/.local/lib/python3.12/site-packages/IPython/core/pylabtools.py:170: UserWarning: Glyph 25910 (\\N{CJK UNIFIED IDEOGRAPH-6536}) missing from font(s) DejaVu Sans.\n  fig.canvas.print_figure(bytes_io, **kw)\n/home/rog/.local/lib/python3.12/site-packages/IPython/core/pylabtools.py:170: UserWarning: Glyph 30410 (\\N{CJK UNIFIED IDEOGRAPH-76CA}) missing from font(s) DejaVu Sans.\n  fig.canvas.print_figure(bytes_io, **kw)\n/home/rog/.local/lib/python3.12/site-packages/IPython/core/pylabtools.py:170: UserWarning: Glyph 22810 (\\N{CJK UNIFIED IDEOGRAPH-591A}) missing from font(s) DejaVu Sans.\n  fig.canvas.print_figure(bytes_io, **kw)\n/home/rog/.local/lib/python3.12/site-packages/IPython/core/pylabtools.py:170: UserWarning: Glyph 31354 (\\N{CJK UNIFIED IDEOGRAPH-7A7A}) missing from font(s) DejaVu Sans.\n  fig.canvas.print_figure(bytes_io, **kw)\n/home/rog/.local/lib/python3.12/site-packages/IPython/core/pylabtools.py:170: UserWarning: Glyph 32452 (\\N{CJK UNIFIED IDEOGRAPH-7EC4}) missing from font(s) DejaVu Sans.\n  fig.canvas.print_figure(bytes_io, **kw)\n/home/rog/.local/lib/python3.12/site-packages/IPython/core/pylabtools.py:170: UserWarning: Glyph 21512 (\\N{CJK UNIFIED IDEOGRAPH-5408}) missing from font(s) DejaVu Sans.\n  fig.canvas.print_figure(bytes_io, **kw)\n/home/rog/.local/lib/python3.12/site-packages/IPython/core/pylabtools.py:170: UserWarning: Glyph 65288 (\\N{FULLWIDTH LEFT PARENTHESIS}) missing from font(s) DejaVu Sans.\n  fig.canvas.print_figure(bytes_io, **kw)\n/home/rog/.local/lib/python3.12/site-packages/IPython/core/pylabtools.py:170: UserWarning: Glyph 31034 (\\N{CJK UNIFIED IDEOGRAPH-793A}) missing from font(s) DejaVu Sans.\n  fig.canvas.print_figure(bytes_io, **kw)\n/home/rog/.local/lib/python3.12/site-packages/IPython/core/pylabtools.py:170: UserWarning: Glyph 20363 (\\N{CJK UNIFIED IDEOGRAPH-4F8B}) missing from font(s) DejaVu Sans.\n  fig.canvas.print_figure(bytes_io, **kw)\n/home/rog/.local/lib/python3.12/site-packages/IPython/core/pylabtools.py:170: UserWarning: Glyph 65289 (\\N{FULLWIDTH RIGHT PARENTHESIS}) missing from font(s) DejaVu Sans.\n  fig.canvas.print_figure(bytes_io, **kw)\n/home/rog/.local/lib/python3.12/site-packages/IPython/core/pylabtools.py:170: UserWarning: Glyph 20302 (\\N{CJK UNIFIED IDEOGRAPH-4F4E}) missing from font(s) DejaVu Sans.\n  fig.canvas.print_figure(bytes_io, **kw)\n/home/rog/.local/lib/python3.12/site-packages/IPython/core/pylabtools.py:170: UserWarning: Glyph 39640 (\\N{CJK UNIFIED IDEOGRAPH-9AD8}) missing from font(s) DejaVu Sans.\n  fig.canvas.print_figure(bytes_io, **kw)"
+  },
+  {
+    "objectID": "papers/sample-multi-factor.html#数据一览",
+    "href": "papers/sample-multi-factor.html#数据一览",
+    "title": "多因子选股模型的因子构造与失效分析",
+    "section": "数据一览",
+    "text": "数据一览\n\n\n\n因子\nIC均值\nICIR\n年化超额\n换手率\n\n\n\n\n估值(EP)\n0.042\n0.76\n6.8%\n8%/月\n\n\n动量(Mom)\n0.038\n0.52\n5.2%\n15%/月\n\n\n反转(Rev)\n-0.035\n-0.61\n-4.1%\n25%/月\n\n\n合成(等权)\n0.052\n0.89\n8.2%\n12%/月"
+  },
+  {
+    "objectID": "papers/sample-multi-factor.html#失效条件",
+    "href": "papers/sample-multi-factor.html#失效条件",
+    "title": "多因子选股模型的因子构造与失效分析",
+    "section": "失效条件",
+    "text": "失效条件\n\n估值因子：在流动性紧缩期（如2020年3月），低估值股遭无差别抛售，EP因子失效\n动量因子：在市场急跌反弹时（V型反转），动量因子出现大幅回撤\n反转因子：在趋势市（单边上涨）中，反转因子持续亏损\n合成因子：当各因子同时失效（如2021年核心资产抱团），多因子组合也难以避险\n\n\n策略限制：以上为示例数据，实盘中需考虑交易成本、冲击成本、以及因子之间的相关性变化。"
+  },
+  {
+    "objectID": "papers/sample-multi-factor.html#参考文献",
+    "href": "papers/sample-multi-factor.html#参考文献",
+    "title": "多因子选股模型的因子构造与失效分析",
+    "section": "参考文献",
+    "text": "参考文献\n见 refs.bib（后续添加）"
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "关于",
+    "section": "",
+    "text": "个人量化金融论文阅读笔记知识库，使用 Quarto 构建。\n\n\n\n多因子模型：因子构造、IC/IR 分析、组合优化\n深度强化学习：TD3、PPO 在资产配置中的应用\n资产配置：风险预算、Black-Litterman 模型\n风格轮动：产业资本择时、风格因子\n\n\n\n\n\nQuarto 网站生成\nKaTeX 公式渲染\nPython 可执行代码（matplotlib 图表）\nGitHub Actions 自动化部署\nGitHub Pages 免费托管（HTTPS）"
+  },
+  {
+    "objectID": "about.html#覆盖领域",
+    "href": "about.html#覆盖领域",
+    "title": "关于",
+    "section": "",
+    "text": "多因子模型：因子构造、IC/IR 分析、组合优化\n深度强化学习：TD3、PPO 在资产配置中的应用\n资产配置：风险预算、Black-Litterman 模型\n风格轮动：产业资本择时、风格因子"
+  },
+  {
+    "objectID": "about.html#技术栈",
+    "href": "about.html#技术栈",
+    "title": "关于",
+    "section": "",
+    "text": "Quarto 网站生成\nKaTeX 公式渲染\nPython 可执行代码（matplotlib 图表）\nGitHub Actions 自动化部署\nGitHub Pages 免费托管（HTTPS）"
+  },
+  {
+    "objectID": "topics/drl.html",
+    "href": "topics/drl.html",
+    "title": "深度强化学习",
+    "section": "",
+    "text": "深度强化学习论文笔记\n暂无论文。"
+  },
+  {
+    "objectID": "topics/multi-factor.html",
+    "href": "topics/multi-factor.html",
+    "title": "多因子模型",
+    "section": "",
+    "text": "多因子选股模型的因子构造与失效分析 — 示例笔记 (2024-06)"
+  },
+  {
+    "objectID": "topics/multi-factor.html#已收录",
+    "href": "topics/multi-factor.html#已收录",
+    "title": "多因子模型",
+    "section": "",
+    "text": "多因子选股模型的因子构造与失效分析 — 示例笔记 (2024-06)"
+  }
+]
