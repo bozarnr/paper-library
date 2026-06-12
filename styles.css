@@ -1,0 +1,28 @@
+body {
+  --paper-bg: #faf9f6;
+  background-color: var(--paper-bg);
+}
+
+/* 论文卡片 */
+.paper-card {
+  border: 1px solid #e0dcd3;
+  border-radius: 8px;
+  padding: 1.2em;
+  margin-bottom: 1em;
+  background: white;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+}
+.paper-card h3 { margin-top: 0; }
+.paper-card .meta {
+  color: #666;
+  font-size: 0.9em;
+  margin-bottom: 0.5em;
+}
+.paper-card .tags {
+  display: inline-block;
+  background: #eef;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 0.8em;
+  margin-right: 4px;
+}

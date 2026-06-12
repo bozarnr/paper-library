@@ -1,0 +1,22 @@
+---
+title: "关于"
+---
+
+# 关于本文库
+
+个人量化金融论文阅读笔记知识库，使用 [Quarto](https://quarto.org/) 构建。
+
+## 覆盖领域
+
+- **多因子模型**：因子构造、IC/IR 分析、组合优化
+- **深度强化学习**：TD3、PPO 在资产配置中的应用
+- **资产配置**：风险预算、Black-Litterman 模型
+- **风格轮动**：产业资本择时、风格因子
+
+## 技术栈
+
+- Quarto 网站生成
+- KaTeX 公式渲染
+- Python 可执行代码（matplotlib 图表）
+- GitHub Actions 自动化部署
+- GitHub Pages 免费托管（HTTPS）

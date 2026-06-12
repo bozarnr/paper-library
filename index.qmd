@@ -1,0 +1,42 @@
+---
+title: "量化论文知识库"
+---
+
+# 📚 论文库总览
+
+`统计：` **1 篇论文**（持续更新中）
+
+::: {.panel-tabset}
+## 最新阅读
+
+<div class="paper-card">
+<h3><a href="./papers/sample-multi-factor.qmd">多因子选股模型的因子构造与失效分析</a></h3>
+<div class="meta">示例笔记 · 2024-06</div>
+<div><span class="tags">多因子模型</span><span class="tags">选股</span></div>
+<p>示例论文，展示了 Quarto 对 LaTeX 公式、Python 可执行代码、数据表格和图表的综合支持。</p>
+</div>
+
+## 按主题
+
+| 主题 | 描述 | 论文数 |
+|------|------|--------|
+| [多因子模型](./topics/multi-factor.qmd) | 因子构造、IC分析、组合优化 | 1 |
+| [深度强化学习](./topics/drl.qmd) | TD3、PPO、Turbulence Index | 0 |
+| [资产配置](./topics/asset-allocation.qmd) | 风险预算、Black-Litterman | 0 |
+| [风格轮动](./topics/style-rotation.qmd) | 产业资本择时、风格因子 | 0 |
+
+:::
+
+---
+
+## 工作流：从 PDF 到网页
+
+```
+PDF论文 → AI 阅读总结 → 生成 .qmd 文件 → Push → GitHub Actions → 上线 ✅
+                                              (自动构建+部署)
+```
+
+使用 [Hermes Agent](https://hermes-agent.nousresearch.com) 配合 AI 批量处理论文：
+1. 将 PDF 放入 `papers/` 目录
+2. 运行 AI 脚本生成 `.qmd` 格式总结
+3. `git push` → 自动部署到 `bozarnr.github.io/paper-library`

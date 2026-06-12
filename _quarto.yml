@@ -1,0 +1,46 @@
+project:
+  type: website
+  output-dir: _site
+
+website:
+  title: "量化论文知识库"
+  description: "个人阅读笔记 · 多因子 · DRL · 资产配置 · 风格轮动"
+  site-url: "https://bozarnr.github.io/paper-library"
+  repo-url: "https://github.com/bozarnr/paper-library"
+  repo-actions: [edit, issue]
+  navbar:
+    left:
+      - href: index.qmd
+        text: 首页
+      - text: "主题分类"
+        menu:
+          - href: topics/multi-factor.qmd
+            text: 多因子模型
+          - href: topics/drl.qmd
+            text: 深度强化学习
+          - href: topics/asset-allocation.qmd
+            text: 资产配置
+          - href: topics/style-rotation.qmd
+            text: 风格轮动
+      - href: about.qmd
+        text: 关于
+  page-footer:
+    left: "个人量化论文阅读笔记"
+    right:
+      - icon: github
+        href: https://github.com/bozarnr/paper-library
+
+format:
+  html:
+    theme:
+      light: cosmo
+      dark: darkly
+    css: styles.css
+    toc: true
+    toc-depth: 4
+    code-copy: true
+    code-fold: false
+    code-overflow: wrap
+    number-sections: false
+    highlight-style: github
+    link-external-icon: true

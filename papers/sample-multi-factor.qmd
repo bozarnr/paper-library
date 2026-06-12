@@ -1,0 +1,86 @@
+---
+title: "多因子选股模型的因子构造与失效分析"
+author: "示例笔记"
+date: "2024-06"
+categories: [多因子模型, 选股]
+---
+
+## 摘要
+
+本笔记记录多因子选股模型中常见因子的构造方法、盈利逻辑及失效条件，涵盖估值因子、动量因子和反转因子。
+
+## 因子构造
+
+### 估值因子（EP）
+
+$$ EP_t = \frac{Earnings_t}{MarketCap_t} $$
+
+### 动量因子
+
+$$ Mom_{12,1} = \frac{P_{t-1}}{P_{t-12}} - 1 $$
+
+### 因子合成
+
+加权方式采用**等权合成**与**ICIR加权**两种方式：
+
+$$ Score_i = \sum_{k=1}^K w_k \cdot Rank(F_{k,i}) $$
+
+其中 $w_k$ 为因子权重，$Rank(\cdot)$ 为横截面排序分位数。
+
+## 因子测试代码
+
+```{python}
+# | echo: true
+# | eval: true
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# 模拟因子数据
+np.random.seed(42)
+n_stocks = 1000
+n_periods = 252
+
+dates = pd.date_range('2023-01-01', periods=n_periods, freq='D')
+factor = np.random.randn(n_stocks)
+returns = 0.05 * factor + np.random.randn(n_stocks) * 0.02
+
+# IC 计算
+ic = np.corrcoef(factor, returns)[0, 1]
+print(f"Rank IC: {ic:.4f}")
+
+# 分组收益
+groups = pd.qcut(factor, 5, labels=['Q1(低)', 'Q2', 'Q3', 'Q4', 'Q5(高)'])
+group_returns = pd.Series(returns, index=groups).groupby(level=0).mean()
+
+fig, ax = plt.subplots(figsize=(8, 4))
+colors = ['#c96442', '#e8927a', '#f0c4a0', '#a8c4d8', '#5a8a9a']
+bars = ax.bar(group_returns.index, group_returns.values, color=colors)
+ax.set_title('多空组合收益（示例）')
+ax.set_ylabel('日均收益 (%)')
+ax.axhline(0, color='gray', linestyle='--', linewidth=0.5)
+plt.tight_layout()
+plt.show()
+```
+
+## 数据一览
+
+| 因子 | IC均值 | ICIR | 年化超额 | 换手率 |
+|------|--------|------|----------|--------|
+| 估值(EP) | 0.042 | 0.76 | 6.8% | 8%/月 |
+| 动量(Mom) | 0.038 | 0.52 | 5.2% | 15%/月 |
+| 反转(Rev) | -0.035 | -0.61 | -4.1% | 25%/月 |
+| 合成(等权) | 0.052 | 0.89 | 8.2% | 12%/月 |
+
+## 失效条件
+
+1. **估值因子**：在流动性紧缩期（如2020年3月），低估值股遭无差别抛售，EP因子失效
+2. **动量因子**：在市场急跌反弹时（V型反转），动量因子出现大幅回撤
+3. **反转因子**：在趋势市（单边上涨）中，反转因子持续亏损
+4. **合成因子**：当各因子同时失效（如2021年核心资产抱团），多因子组合也难以避险
+
+> **策略限制**：以上为示例数据，实盘中需考虑交易成本、冲击成本、以及因子之间的相关性变化。
+
+## 参考文献
+
+见 `refs.bib`（后续添加）
