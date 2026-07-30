@@ -1,0 +1,13 @@
+{
+  "project": "paper-alpha-replications",
+  "updated_at": "2026-07-30",
+  "entries": [
+    {
+      "id": "autoalpha-2020",
+      "status": "method_reconstruction_complete_strict_candidate_promotion_closed",
+      "claim_ceiling": "implemented_not_deployable",
+      "next_gate": "new pre-registered mechanism with independent data"
+    }
+  ],
+  "public_scope": "Paper metadata, clean-room method notes, and non-sensitive evidence summaries only."
+}
