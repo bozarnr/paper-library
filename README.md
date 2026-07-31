@@ -2,8 +2,6 @@
 
 Replication notes for quant papers, written with a claim ceiling attached. A paper can be interesting, code can run, and the result can still be unusable as an alpha. This repo keeps those states separate.
 
-这里记录论文、实现证据、本地观察和偏差。目标不是把论文包装成策略，而是留下以后能继续查、继续复现、继续反驳的记录。
-
 ## Showcase
 
 - [Replication Index](reproductions/index.md): current paper list, status meanings, and claim ceilings.
@@ -25,9 +23,20 @@ Replication notes for quant papers, written with a claim ceiling attached. A pap
 
 ```bash
 python -m unittest discover -s tests -v
+python scripts/verify_cards.py
 ```
 
-The tests check that each card has source, scope, deviation, and claim-boundary sections. They do not validate trading performance.
+The checks validate that each public card has source, scope, deviation, and claim-boundary sections. They also validate that each machine-readable paper card links to existing evidence. They do not validate trading performance.
+
+## Evidence contract
+
+```text
+reproductions/  human-readable replication cards
+paper_cards/    machine-readable claim and evidence metadata
+schemas/        lightweight schema contracts for paper cards
+scripts/        static verification commands
+tests/          regression tests for the evidence contract
+```
 
 ## Rules
 
