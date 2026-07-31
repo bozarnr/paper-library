@@ -1,0 +1,16 @@
+{
+  "paper_id": "factormad",
+  "title": "FactorMAD-style multi-agent factor proposal and audit workflow",
+  "claim": "Agentic factor research is useful only when proposal, sandbox, audit, and promotion records are explicit.",
+  "implementation_status": "implemented",
+  "replication_status": "partial",
+  "claim_ceiling": "implemented",
+  "evidence_files": [
+    "reproductions/factormad.md"
+  ],
+  "limits": [
+    "Private prompts and formulas excluded",
+    "Small-batch workflow smoke only",
+    "No strict alpha-discovery claim"
+  ]
+}

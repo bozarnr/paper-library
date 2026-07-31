@@ -1,0 +1,16 @@
+{
+  "paper_id": "double_ensemble",
+  "title": "DoubleEnsemble-style denoising and ensemble learning for financial prediction",
+  "claim": "Quality-filtered ensemble training can improve predictive diagnostics versus a simple baseline.",
+  "implementation_status": "implemented",
+  "replication_status": "partial",
+  "claim_ceiling": "implemented",
+  "evidence_files": [
+    "reproductions/double-ensemble.md"
+  ],
+  "limits": [
+    "Smoke comparison only",
+    "No employer data or raw logs",
+    "No production performance claim"
+  ]
+}

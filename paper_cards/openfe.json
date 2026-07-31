@@ -1,0 +1,16 @@
+{
+  "paper_id": "openfe",
+  "title": "OpenFE-style automated feature generation for tabular alpha research",
+  "claim": "A constrained feature grammar can produce auditable candidates for leakage-safe factor research.",
+  "implementation_status": "implemented",
+  "replication_status": "partial",
+  "claim_ceiling": "implemented",
+  "evidence_files": [
+    "reproductions/openfe.md"
+  ],
+  "limits": [
+    "Feature formulas and private logs excluded",
+    "Smoke candidate accounting only",
+    "No robustness claim across universes or costs"
+  ]
+}
