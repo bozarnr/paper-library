@@ -1,0 +1,15 @@
+{
+  "paper_id": "autoalpha-2020",
+  "title": "AutoAlpha-style Formula Discovery",
+  "claim": "Search and validate formula alpha candidates under strict promotion gates.",
+  "implementation_status": "implemented",
+  "replication_status": "closed",
+  "claim_ceiling": "implemented",
+  "evidence_files": [
+    "reproductions/autoalpha.md"
+  ],
+  "limits": [
+    "Public card summarizes method reconstruction and rejection evidence only.",
+    "No private data, employer code, or deployable alpha claim is included."
+  ]
+}
