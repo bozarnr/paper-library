@@ -1,0 +1,16 @@
+{
+  "paper_id": "spatiotemporal_representation",
+  "title": "Spatio-temporal representation layer for financial event and entity context",
+  "claim": "Event and entity context can be structured for later point-in-time testing.",
+  "implementation_status": "implemented",
+  "replication_status": "partial",
+  "claim_ceiling": "implemented",
+  "evidence_files": [
+    "reproductions/spatiotemporal-representation.md"
+  ],
+  "limits": [
+    "Many source events lack report_date",
+    "Current layer is context infrastructure only",
+    "No point-in-time alpha claim"
+  ]
+}
