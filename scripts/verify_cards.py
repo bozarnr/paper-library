@@ -12,6 +12,10 @@ REQUIRED_SECTIONS = (
 )
 
 
+def replication_cards(root: Path = Path("reproductions")) -> list[Path]:
+    return sorted(card for card in root.glob("*.md") if card.name != "index.md")
+
+
 def validate(card: Path) -> list[str]:
     text = card.read_text(encoding="utf-8")
     return [section for section in REQUIRED_SECTIONS if section not in text]
@@ -37,7 +41,7 @@ def validate_paper_card(card: Path, schema: Path = Path("schemas/paper_card_sche
 
 
 def main() -> None:
-    cards = sorted(Path("reproductions").glob("*.md"))
+    cards = replication_cards()
     if not cards:
         raise SystemExit("no public replication cards found")
     failures = {str(card): validate(card) for card in cards if validate(card)}
