@@ -4,6 +4,10 @@ Replication notes for quant papers, written with a claim ceiling attached. A pap
 
 这里记录论文、实现证据、本地观察和偏差。目标不是把论文包装成策略，而是留下以后能继续查、继续复现、继续反驳的记录。
 
+## Showcase
+
+- [Replication Index](reproductions/index.md): current paper list, status meanings, and claim ceilings.
+
 ## Related repos
 
 - [AI-Alpha-Research-Lab](https://github.com/bozarnr/AI-Alpha-Research-Lab): formula search, evaluation, and rejection gates.
