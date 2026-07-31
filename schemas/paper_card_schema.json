@@ -1,0 +1,14 @@
+{
+  "required": [
+    "paper_id",
+    "title",
+    "claim",
+    "implementation_status",
+    "replication_status",
+    "claim_ceiling",
+    "evidence_files",
+    "limits"
+  ],
+  "allowed_status": ["queued", "implemented", "partial", "closed"],
+  "allowed_claim_ceiling": ["reading-note", "implemented", "replicated-partial", "replicated-strict"]
+}
