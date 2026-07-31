@@ -1,0 +1,6 @@
+paper_id,evidence_level,implementation_status,replication_status,claim_ceiling,public_artifact
+autoalpha,frozen_gate_closed,closed,closed,implemented,reproductions/autoalpha.md
+double_ensemble,smoke_comparison,implemented,partial,implemented,reproductions/double-ensemble.md
+openfe,candidate_accounting,implemented,partial,implemented,reproductions/openfe.md
+spatiotemporal_representation,context_layer_smoke,implemented,partial,implemented,reproductions/spatiotemporal-representation.md
+factormad,agent_workflow_smoke,implemented,partial,implemented,reproductions/factormad.md

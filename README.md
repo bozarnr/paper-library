@@ -20,6 +20,8 @@ python scripts/verify_cards.py
 ```
 
 The checks validate that each public card carries source, scope, deviation, and claim-boundary sections, and that each machine-readable paper card links to existing evidence. They do not validate trading performance.
+The disclosure boundary is recorded in [DISCLOSURE.md](DISCLOSURE.md), and
+`sample_data/evidence_matrix_sample.csv` is a synthetic schema fixture.
 
 ## Rules
 
